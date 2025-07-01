@@ -1,0 +1,15 @@
+  <div class="bg-dark text-light p-5">
+    <h1 class="text-center text-warning">Exam Details : {{examId}}</h1>
+
+    <p class="lead mt-3">Exam Name : {{exam?.name}}</p>
+    <p class="lead mt-3">Exam Category : {{exam?.category}}</p>
+    <p class="lead mt-3">Exam Creation Date : {{exam?.createdAt}}</p>
+    <p class="lead mt-3">Exam minimum garde : {{exam?.min_grade}}</p>
+    <p class="lead mt-3">Exam grade : {{exam?.grade}}</p>
+
+    <button class="btn btn-info mt-4" [routerLink]="['/exams']" 
+             [routerLinkActive]="'text-danger'"
+            [routerLinkActiveOptions]="{exact:true}">
+      Back To All Exams
+    </button>
+  </div>

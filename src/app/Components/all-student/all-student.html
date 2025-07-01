@@ -1,0 +1,50 @@
+  
+
+
+
+<div class="student-list-container">
+
+
+  <div style="display: flex; justify-content: space-between;align-items: center;">
+      <h2 style="display: inline-block; margin-left: 100px;">Student List</h2>
+
+  <div class="search-container">
+  
+  
+  <div class="search-box">
+    <input 
+      type="text" 
+      [(ngModel)]="searchId" 
+      placeholder="Enter student ID"
+      (keyup.enter)="search()"
+    >
+    <button (click)="search()">Search</button>
+    
+  </div>
+</div>
+
+  </div>
+
+  
+  <div *ngIf="isLoading" class="loading">
+    <p>Loading students...</p>
+  </div>
+  
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+    <button (click)="loadStudents()">Retry</button>
+  </div>
+  
+  <div *ngIf="students.length > 0 && !isLoading" class="student-grid">
+    <div *ngFor="let student of students" class="student-card">
+      <h3>{{ student.username }}</h3>
+      <p>ID: {{ student.id }}</p>
+      <p>Email: {{ student.email }}</p>
+      <a [routerLink]="['/student', student.id]">View Details</a>
+    </div>
+  </div>
+  
+  <div *ngIf="students.length === 0 && !isLoading && !error" class="no-students">
+    <p>No students found.</p>
+  </div>
+</div>

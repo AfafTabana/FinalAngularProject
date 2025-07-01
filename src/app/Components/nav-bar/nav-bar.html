@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg custom-navbar shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Exam Portal</a>
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#"   
+             [routerLink]="['/Add']"
+            [routerLinkActive]="'text-danger'"
+            [routerLinkActiveOptions]="{exact:true}">Add Question</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"   
+            [routerLink]="['/Get']"
+            [routerLinkActive]="'text-danger'"
+            [routerLinkActiveOptions]="{exact:true}">Get Exam Questions</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="#"   
+            [routerLink]="['/AllStudents']"
+            [routerLinkActive]="'text-danger'"
+            [routerLinkActiveOptions]="{exact:true}">Get All Students</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="#"   
+            [routerLink]="['/exams']"
+            [routerLinkActive]="'text-danger'"
+            [routerLinkActiveOptions]="{exact:true}">All Exams </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

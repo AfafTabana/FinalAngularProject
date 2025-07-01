@@ -1,0 +1,17 @@
+<div class="questions-wrapper">
+  @for (q of questions; track q; let i = $index) {
+    <div class="question-card">
+      <h3>Question {{ i + 1 }}: {{ q.header }}</h3>
+      <div class="answers">
+        <h5 class="correct">✔ {{ q.correct_Answer }}</h5>
+        <h5 class="wrong">✖ {{ q.fWrong_Answer }}</h5>
+        <h5 class="wrong">✖ {{ q.sWrong_Answer }}</h5>
+      </div>
+      <p class="grade">Grade: {{ q.grade }}</p>
+      <div class="actions">
+        <button class="edit-btn" (click)="onEdit(q.id , q)">Edit</button>
+        <button class="delete-btn" (click)="onDelete(q.id)">Delete</button>
+      </div>
+    </div>
+  }
+</div>

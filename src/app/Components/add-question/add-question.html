@@ -1,0 +1,47 @@
+<div class="container mt-4">
+  <form [formGroup]="Questionform" (ngSubmit)="onSubmit()" class="p-4 border rounded bg-light shadow-sm">
+    <h4 class="mb-4 text-center text-primary header">Add Exam Question</h4>
+
+    <div class="row">
+    
+      <div class="col-md-6 mb-3">
+        <label>Grade</label>
+        <input type="number" class="form-control" formControlName="grade" />
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label>Question Text</label>
+      <textarea rows="2" class="form-control" formControlName="header"></textarea>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label>Exam ID</label>
+        <input type="number" class="form-control" formControlName="exam_id" />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label>Type</label>
+        <input type="text" class="form-control" formControlName="type" />
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label>Correct Answer</label>
+      <input type="text" class="form-control" formControlName="correct_Answer" />
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label>First Wrong Answer</label>
+        <input type="text" class="form-control" formControlName="fWrong_Answer" />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label>Second Wrong Answer</label>
+        <input type="text" class="form-control" formControlName="sWrong_Answer" />
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success w-100">Submit</button>
+  </form>
+</div>

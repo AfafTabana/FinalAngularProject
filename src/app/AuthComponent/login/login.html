@@ -1,0 +1,43 @@
+<<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow rounded-4">
+        <div class="card-body">
+          <h4 class="text-center mb-4 text-success">Login Form</h4>
+
+          <form [formGroup]="LoginForm" (submit)="loginUser()">
+
+            <div class="mb-3">
+              <label for="userName" class="form-label">User Name</label>
+              <input id="userName" type="text" class="form-control" formControlName="userName" placeholder="Enter your user name">
+              
+              @if(getUserName.touched) {
+                @if(getUserName.hasError('required')) {
+                  <div class="text-danger">User Name is required</div>
+                }
+              }
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input id="password" type="password" class="form-control" formControlName="password" placeholder="Enter your password">
+              
+              @if(getPassword.touched) {
+                @if(getPassword.hasError('required')) {
+                  <div class="text-danger">Password is required</div>
+                }
+              }
+            </div>
+
+            <div class="d-grid">
+              <button class="btn btn-success btn-lg rounded-pill">Login</button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

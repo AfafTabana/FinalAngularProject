@@ -1,0 +1,81 @@
+ <div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow rounded-4">
+        <div class="card-body">
+          <h4 class="text-center mb-4 text-primary"> Registration Form </h4>
+
+          <form [formGroup]="Registerform" (submit)="Adduser()" >
+            <div class="mb-3">
+              <label for="userName" class="form-label">User Name</label>
+             
+              <input id="userName" type="text" class="form-control" formControlName="userName" placeholder=" plz Enter Your Name ">
+                @if(getUserName.touched){
+                    @if(getUserName.hasError('required')){
+                        <div class="text-danger">
+                             plz Enter Your Name
+                         </div>
+                    }
+                    @if(getUserName.hasError('minlength')){
+                        <div class="text-danger">
+                             plz Enter Your Name
+                         </div>
+                    }
+                }
+            </div>
+            
+
+             
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Emaill</label>
+              <input id="email" type="email" class="form-control" formControlName="email" placeholder=" plz Enter Your  E-maill  ">
+              @if(getEmail.touched){
+                  @if(getEmail.hasError('required')){
+                      <div class="text-danger">
+                           plz Enter Your E-maill
+                       </div>
+                  }
+                  @if(getEmail.hasError('email')){
+                      <div class="text-danger">
+                           plz Your E-maill such as hamoksha  gmial.com
+                       </div>
+                  }
+              }
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label"> Password</label>
+              <input type="password" id="password" class="form-control" formControlName="password" placeholder="plz Enter your password">
+              @if(getPassword.touched){
+                  @if(getPassword.hasError('required')){
+                      <div class="text-danger">
+                           plz Enter Your password
+                       </div>
+                  }
+              }
+            </div>
+
+             <div class="mb-3">
+              <label for="confirmPassward" class="form-label"> Confirm Password</label>
+               <input type="password" id="confirmPassward" class="form-control" formControlName="confirmPassward" placeholder="Confirm your password">
+              @if(getConfirmPassword.touched){
+                  @if(getConfirmPassword.hasError('required')){
+                      <div class="text-danger">
+                           plz Enter Your password
+                       </div>
+                  }
+              }
+            </div>
+
+            <div class="d-grid">
+              <button class="btn btn-primary btn-lg rounded-pill" > Register</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

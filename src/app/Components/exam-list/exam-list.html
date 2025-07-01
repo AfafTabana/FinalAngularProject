@@ -1,0 +1,38 @@
+<div class="mt-3">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Category</th>
+        <th scope="col">CreatedAt</th>
+        <th scope="col">Minimum Grade</th>
+         <th scope="col">Grade</th>
+        <th scope="col">actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (exam of exams; track exam.id) {
+      <tr>
+        <th scope="row">{{exam.id}}</th>
+        <td>{{exam.name}}</td>
+        <td>{{exam.category}}</td>
+        <td>{{exam.createdAt}}</td>
+        <td>{{exam.min_grade}}</td>
+        <td>{{exam.grade}}</td>
+        <td>
+          <i
+            [routerLink]="[exam.id,'edit']"
+            class="mx-1 text-info fs-3 bi bi-pencil-square"
+          ></i>
+          <i
+            [routerLink]="['/exams',exam.id]"
+            class="mx-1 text-warning fs-3 bi bi-eye-fill"
+          ></i>
+          <button (click)="deleteHandler(exam.id)" class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

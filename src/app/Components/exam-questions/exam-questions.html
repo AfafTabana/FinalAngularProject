@@ -1,0 +1,41 @@
+<form [formGroup]="QuestionForm" (ngSubmit)="onSubmit()" class="question-form">
+  <div class="form-group">
+    <label for="examId">What is The Exam Id?</label>
+    <input
+      type="number"
+      id="examId"
+      class="form-control"
+      formControlName="Exam_id"
+      placeholder="Enter Exam ID"
+    />
+  </div>
+
+  <button type="submit" class="btn-submit" [disabled]="isLoading">
+    <span class="button-content">
+      {{ isLoading ? 'Loading...' : 'Submit' }}
+    </span>
+  </button>
+</form>
+
+@if (hasSubmitted) {
+  <div class="results-section">
+    @if (isLoading) {
+      <div class="loading-state">
+        <div class="loading-spinner"></div>
+        <span>Loading questions...</span>
+      </div>
+    }
+    @else if (questions.length > 0) {
+      <app-get-question-list 
+        [questions]="questions"
+        (questionDeleted)="handleQuestionDeleted(QuestionForm.value.Exam_id)"
+      ></app-get-question-list>
+    }
+    @else {
+      <div class="no-questions-message">
+        <span class="no-questions-icon">!</span>
+        <p>No questions found for this exam</p>
+      </div>
+    }
+  </div>
+}

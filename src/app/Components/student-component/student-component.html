@@ -1,0 +1,45 @@
+<div class="student-container">
+  <div *ngIf="isLoading" class="loading">Loading student details...</div>
+  
+  <div *ngIf="error" class="error">{{ error }}</div>
+  
+  <div *ngIf="student && !isLoading" class="student-details">
+    <h2>Student Details</h2>
+    
+    <div class="student-info">
+      <p><strong>ID:</strong> {{ student.id }}</p>
+      <p><strong>Username:</strong> {{ student.username }}</p>
+      <p><strong>Email:</strong> {{ student.email }}</p>
+      <p><strong>Successful Exams:</strong> {{ student.numberOfSuccessfulExams }}</p>
+      <p><strong>Failed Exams:</strong> {{ student.numberOfFailedExams }}</p>
+    </div>
+    
+    <h3>Exam Results</h3>
+    <table *ngIf="student.studentExams.length > 0">
+      <thead>
+        <tr>
+          <th>Exam Name</th>
+          <th>Category</th>
+          <th>Grade</th>
+          <th>Full Mark</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let exam of student.studentExams">
+          <td>{{ exam.name }}</td>
+          <td>{{ exam.category }}</td>
+          <td>{{ exam.studentGrade }}</td>
+          <td>{{ exam.fullMark }}</td>
+          <td [ngClass]="{'pass': exam.studentGrade >= 50, 'fail': exam.studentGrade < 50}">
+            {{ exam.studentGrade >= 50 ? 'Pass' : 'Fail' }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div *ngIf="student.studentExams.length === 0">
+      <p>No exam results found for this student.</p>
+    </div>
+  </div>
+</div>
