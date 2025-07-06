@@ -4,6 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Authsrvices } from '../../Services/authsrvices';
+import { AuthHelperServices } from '../../Services/auth-helper-services';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,10 @@ export class Login {
   });
 
 
-  constructor(private router : Router,private loginservice : Authsrvices){}
+  constructor(private router : Router,
+    private loginservice : Authsrvices,
+    private authhelper : AuthHelperServices
+  ){}
 
   get getUserName(){
     return this.LoginForm.controls['userName'];
@@ -33,8 +37,31 @@ export class Login {
       this.loginservice.Login(logindata).subscribe({
         next :(response) =>{
           console.log("success login",response);
-          localStorage.setItem('token',response.token);
-          this.router.navigate(['/exams']);
+          this.authhelper.saveToken(response.token);
+          const role = this.authhelper.getUserRole();
+          //after update
+          console.log("Role from token:", role);
+
+          if(role == 'Admin'){
+            this.router.navigate(['/exams']);
+            console.log("Decoded Token:", this.authhelper.decodeToken());
+
+          }else if(role == 'User'){
+            
+                const username = this.authhelper.getUserName();
+  
+                console.log("Role from token:", role);
+                 console.log("Username from token:", username);
+            
+            this.router.navigate(['/exams']);
+            
+            
+          }else {
+            // this.router.navigate(['/unauthorized']);
+            console.log( role);
+            console.log("unauthorized");
+          }
+         
         },
         error :(error) => {
           console.log("failed login",error);
