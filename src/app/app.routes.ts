@@ -15,6 +15,11 @@ import { ExamDetails } from './pages/exam-details/exam-details';
 import { ExamForm } from './pages/exam-form/exam-form';
 import { NotFound } from './pages/not-found/not-found';
 import { Unauthorizesd } from './pages/unauthorizesd/unauthorizesd';
+import { TakeExamComponent } from './Components/take-exam-component/take-exam-component';
+import { GetStudentResults } from './Components/get-student-results/get-student-results';
+import { AllStudentResults } from './Components/all-student-results/all-student-results';
+import { ExamResult } from './Components/exam-result/exam-result';
+import { AvailableExams } from './Components/available-exams/available-exams';
 
 // export const routes: Routes = [
 //     {path: 'login',component : Login},
@@ -61,6 +66,19 @@ export const routes: Routes = [
   { path: 'GetList', component: GetQuestionList, canActivate: [authGuard, adminGuard] },
   { path: 'Questions/:id/edit', component: Edit, canActivate: [authGuard, adminGuard] },
   { path: 'AllStudents', component: AllStudentComponent, canActivate: [authGuard, adminGuard] },
+    {
+  path: 'take-exam/:id',
+  component: TakeExamComponent
+} , 
+ { path: 'student-results/:id', component: GetStudentResults },
+
+   {
+    path: 'all-student-results',
+    component: AllStudentResults
+  } , 
+  { path: 'exam-result/:examId', component: ExamResult },
+  {path:'AllExams',component:AvailableExams},
+   
 
   // -------------------------
   // Unauthorized + Not Found

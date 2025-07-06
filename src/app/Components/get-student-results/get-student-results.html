@@ -1,0 +1,26 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Your Exam Results</h2>
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <table *ngIf="results.length > 0" class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Exam Name</th>
+        <th>Grade (%)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let result of results">
+        <td>{{ result.examName }}</td>
+        <td>{{ result.grade }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!isLoading && results.length === 0" class="alert alert-warning">
+    No results found for your account.
+  </div>
+</div>

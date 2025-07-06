@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Available Exams</h2>
+
+  <table class="table table-striped table-bordered" *ngIf="exams.length > 0; else noExams">
+    <thead class="thead-dark">
+      <tr>
+        <th>Exam ID</th>
+        <th>Exam Name</th>
+        <th>Exam Category</th>
+        <th>Take</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let exam of exams; trackBy: trackById">
+        <td>{{ exam.id }}</td>
+        <td>{{ exam.name }}</td>
+        <td>{{ exam.category }}</td>
+        <td>
+          <button class="btn btn-primary btn-sm" [routerLink]="['/take-exam', exam.id]">
+            Take Exam
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Fallback if no exams -->
+  <ng-template #noExams>
+    <div class="alert alert-info mt-3">
+      No available exams found.
+    </div>
+  </ng-template>
+</div>

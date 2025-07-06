@@ -1,0 +1,25 @@
+<div *ngIf="isLoading" class="alert alert-info">Loading student results...</div>
+<div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+<div *ngIf="!isLoading && !error && allResults.length === 0" class="alert alert-warning">
+  No student results found.
+</div>
+
+<div *ngFor="let student of allResults" class="mb-5">
+  <h4 class="text-primary">{{ student.studentName }}</h4>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Exam</th>
+        <th>Grade</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let result of student.results">
+        <td>{{ result.examName }}</td>
+        <td>{{ result.grade }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

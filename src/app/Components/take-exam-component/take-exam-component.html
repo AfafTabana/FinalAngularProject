@@ -1,0 +1,29 @@
+<div class="container mt-4" *ngIf="examData">
+  <h2 class="mb-4">{{ examData.name }}</h2>
+
+<form (ngSubmit)="submitExam()">
+  <div *ngFor="let question of examData.questions" class="mb-4">
+    <label class="fw-bold">{{ question.header }}</label>
+
+    <div *ngFor="let choice of question.choices" class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        [name]="'q' + question.id"
+        [value]="choice"
+        [(ngModel)]="answers[question.id]"
+        [id]="'q' + question.id + '_' + choice"
+        required
+      />
+      <label class="form-check-label" [for]="'q' + question.id + '_' + choice">
+        {{ choice }}
+      </label>
+    </div>
+  </div>
+
+  <button class="btn btn-success" type="submit" [disabled]="isSubmitting">
+    Submit Exam
+  </button>
+</form>
+
+</div>
