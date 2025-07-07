@@ -41,7 +41,7 @@ export class Registeration {
       this.registerserve.register(user)
       .subscribe({
         next : (response : any) => {
-          console.log("success register",response.message);
+          console.log("success register",response);
           this.Registerform.reset();
           this.router.navigate(['/login']);
         },

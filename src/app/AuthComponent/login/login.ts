@@ -53,7 +53,7 @@ export class Login {
                 console.log("Role from token:", role);
                  console.log("Username from token:", username);
             
-            this.router.navigate(['/exams']);
+            this.router.navigate(['/AllExams']);
             
             
           }else {
