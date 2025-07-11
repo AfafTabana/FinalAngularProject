@@ -1,0 +1,16 @@
+ .unauthorized-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
+  
+  .bg-gradient-danger {
+    background: linear-gradient(135deg, #ff4d4d, #d93737);
+  }
+  
+  .bg-light-danger {
+    background-color: rgba(255, 77, 77, 0.1);
+  }

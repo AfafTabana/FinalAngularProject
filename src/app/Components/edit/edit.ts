@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { QuestionService } from '../../Services/question-service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { NavBar } from "../nav-bar/nav-bar";
 
 @Component({
   selector: 'app-edit',
    imports: [
-    ReactiveFormsModule
-  ] ,
+    ReactiveFormsModule,
+    NavBar , 
+    RouterLink
+] ,
   templateUrl: './edit.html',
   styleUrl: './edit.css',
 })

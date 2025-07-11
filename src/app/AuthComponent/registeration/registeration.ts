@@ -3,11 +3,12 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Authsrvices } from '../../Services/authsrvices';
 import { Iregisteruser } from '../../Models/iregisteruser';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { NavBar } from "../../Components/nav-bar/nav-bar";
 
 @Component({
   selector: 'app-registeration',
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, NavBar , RouterModule],
   templateUrl: './registeration.html',
   styleUrl: './registeration.css'
 })
@@ -54,6 +55,14 @@ export class Registeration {
        this.Registerform.markAllAsTouched();
      };
   }
+
+  
+  goHome() {
+    this.router.navigate(['/home']);
+  }
+  navigateToLogin() {
+  this.router.navigate(['/login']);
+}
 
 
 }

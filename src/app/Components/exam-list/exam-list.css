@@ -1,0 +1,16 @@
+.exam-meta {
+    font-size: 0.9rem;
+  }
+  
+  .card {
+    transition: transform 0.2s ease;
+    border-left: 3px solid var(--bs-primary);
+  }
+  
+  .card:hover {
+    transform: translateY(-3px);
+  }
+  
+  .empty-state-icon {
+    opacity: 0.6;
+  }

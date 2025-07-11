@@ -1,43 +1,75 @@
-<<div class="container mt-5">
+<div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card shadow rounded-4">
-        <div class="card-body">
-          <h4 class="text-center mb-4 text-success">Login Form</h4>
-
+    <div class="col-md-8 col-lg-6">
+      <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+        <!-- Colorful Header -->
+        <div class="card-header bg-gradient-primary py-4">
+          <h4 class="text-center text-white mb-0 fw-bold">Login Form</h4>
+        </div>
+        
+        <div class="card-body p-4 p-md-5">
           <form [formGroup]="LoginForm" (submit)="loginUser()">
-
-            <div class="mb-3">
-              <label for="userName" class="form-label">User Name</label>
-              <input id="userName" type="text" class="form-control" formControlName="userName" placeholder="Enter your user name">
-              
+            <!-- User Name -->
+            <div class="mb-4">
+              <label for="userName" class="form-label fw-medium text-primary">User Name</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light bg-opacity-50">
+                  <i class="bi bi-person text-primary"></i>
+                </span>
+                <input 
+                  id="userName" 
+                  type="text" 
+                  class="form-control border-start-0 border-primary border-opacity-25" 
+                  formControlName="userName" 
+                  placeholder="Enter your user name">
+              </div>
               @if(getUserName.touched) {
                 @if(getUserName.hasError('required')) {
-                  <div class="text-danger">User Name is required</div>
+                  <div class="text-danger mt-2 small ps-4">
+                    <i class="bi bi-exclamation-circle me-2"></i>User Name is required
+                  </div>
                 }
               }
             </div>
 
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
-              <input id="password" type="password" class="form-control" formControlName="password" placeholder="Enter your password">
-              
+            <!-- Password -->
+            <div class="mb-4">
+              <label for="password" class="form-label fw-medium text-warning">Password</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light bg-opacity-50">
+                  <i class="bi bi-lock text-warning"></i>
+                </span>
+                <input 
+                  id="password" 
+                  type="password" 
+                  class="form-control border-start-0 border-warning border-opacity-25" 
+                  formControlName="password" 
+                  placeholder="Enter your password">
+              </div>
               @if(getPassword.touched) {
                 @if(getPassword.hasError('required')) {
-                  <div class="text-danger">Password is required</div>
+                  <div class="text-danger mt-2 small ps-4">
+                    <i class="bi bi-exclamation-circle me-2"></i>Password is required
+                  </div>
                 }
               }
             </div>
 
-            <div class="d-grid">
-              <button class="btn btn-success btn-lg rounded-pill">Login</button>
+            <!-- Login Button -->
+            <div class="d-grid mt-4">
+              <button class="btn btn-primary btn-lg rounded-pill fw-bold py-3 shadow-sm" type="submit">
+                <i class="bi bi-box-arrow-in-right me-2"></i>Login
+              </button>
+              <!-- Add this right after your login button div, before closing the form tag -->
+<div class="text-center mt-3">
+  <p class="small text-muted">Don't have an account? 
+    <a class="text-primary fw-medium" style="cursor: pointer" (click)="navigateToRegister()">Register</a>
+  </p>
+</div>
             </div>
-
           </form>
-
         </div>
       </div>
     </div>
   </div>
 </div>
-

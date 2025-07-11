@@ -20,6 +20,7 @@ import { GetStudentResults } from './Components/get-student-results/get-student-
 import { AllStudentResults } from './Components/all-student-results/all-student-results';
 import { ExamResult } from './Components/exam-result/exam-result';
 import { AvailableExams } from './Components/available-exams/available-exams';
+import { Home } from './Design/home/home';
 
 // export const routes: Routes = [
 //     {path: 'login',component : Login},
@@ -48,7 +49,7 @@ export const routes: Routes = [
   // -------------------------
   { path: 'login', component: Login },
   { path: 'register', component: Registeration },
-  { path: '', redirectTo: '/register', pathMatch: 'full' },
+  //{ path: '', redirectTo: '/register', pathMatch: 'full' },
 
   // -------------------------
   // Protected - Authenticated Only (User OR Admin)
@@ -78,6 +79,9 @@ export const routes: Routes = [
   } , 
   { path: 'exam-result/:examId', component: ExamResult },
   {path:'AllExams',component:AvailableExams},
+  { path: '', component: Home },
+   { path: 'home', component: Home },
+
    
 
   // -------------------------

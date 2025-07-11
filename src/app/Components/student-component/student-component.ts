@@ -55,4 +55,32 @@ private getStudentIdFromRoute(): void {
       }
     });
   }
+
+  loadStudent(): void {
+  if (!this.studentId) {
+    console.error('No student ID available to load');
+    return;
+  }
+
+  this.isLoading = true;
+  this.error = null;
+  
+  this.studentService.getStudentDetails(this.studentId).subscribe({
+    next: (data) => {
+      this.student = data;
+      this.isLoading = false;
+      this.cdr.detectChanges();
+      console.log('Student details loaded successfully:', data);
+    },
+    error: (err) => {
+      this.error = 'Failed to load student details. Please try again.';
+      this.isLoading = false;
+      this.cdr.detectChanges();
+      console.error('Error loading student details:', err);
+    }
+  });
+}
+goBack(): void {
+  window.history.back();
+}
 }

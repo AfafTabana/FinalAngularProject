@@ -8,13 +8,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { ExamService } from '../../Services/exam-service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-exam-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule , RouterLink],
   templateUrl: './exam-form.html',
   styleUrl: './exam-form.css',
 })

@@ -1,1 +1,35 @@
-<h1 class="text-center">404 Not Found Page</h1>
+<div class="not-found-container">
+  <div class="card border-0 shadow-lg rounded-4 overflow-hidden" style="max-width: 600px;">
+    <div class="card-header bg-gradient-primary py-4">
+      <div class="text-center">
+        <i class="bi bi-exclamation-triangle display-3 text-white"></i>
+        <h1 class="h2 mb-0 text-white mt-3">404 - Page Not Found</h1>
+      </div>
+    </div>
+    <div class="card-body p-4 p-md-5 text-center">
+      <div class="error-illustration mb-4">
+        <svg width="200" height="150" viewBox="0 0 200 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 50L150 100" stroke="#6c757d" stroke-width="2" stroke-linecap="round"/>
+          <path d="M150 50L50 100" stroke="#6c757d" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="100" cy="75" r="40" fill="#f8f9fa" stroke="#6c757d" stroke-width="2"/>
+          <path d="M80 65C80 65 85 75 80 85" stroke="#6c757d" stroke-width="2" stroke-linecap="round"/>
+          <path d="M120 65C120 65 125 75 120 85" stroke="#6c757d" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      
+      <p class="lead text-muted mb-4">
+        Oops! The page you're looking for doesn't exist or has been moved.
+      </p>
+      
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a routerLink="/" class="btn btn-primary rounded-pill px-4 py-2">
+          <i class="bi bi-house-door me-2"></i>Return Home
+        </a>
+        <a routerLink="/contact" class="btn btn-outline-primary rounded-pill px-4 py-2" (click)="goBack()">
+          <i class="bi bi-headset me-2"></i>Go Back
+        </a>
+       
+      </div>
+    </div>
+  </div>
+</div>

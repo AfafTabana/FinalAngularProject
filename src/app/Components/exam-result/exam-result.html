@@ -1,8 +1,46 @@
-
-<div *ngIf="error" class="alert alert-danger">{{ error }}</div>
-
-<div *ngIf="result">
-  <h3>Exam: {{ result.examName }}</h3>
-  <p><strong>Grade:</strong> {{ result.grade }}</p>
+<div *ngIf="error" class="alert alert-danger border-0 rounded-3 shadow-sm mb-4">
+  <div class="d-flex align-items-center">
+    <i class="bi bi-exclamation-triangle-fill me-3 fs-4"></i>
+    <div>{{ error }}</div>
+  </div>
 </div>
 
+<div *ngIf="result" class="card border-0 shadow-lg rounded-4 overflow-hidden">
+  <div class="card-header py-3" [ngClass]="getGradeColorClass(result.grade, 'header')">
+    <h3 class="mb-0 text-white">
+      <i class="bi bi-award-fill me-2"></i>
+      Exam Results: {{ result.examName }}
+    </h3>
+  </div>
+  <div class="card-body p-4">
+    <div class="d-flex align-items-center mb-3">
+      <div class="rounded-circle p-3 me-3" [ngClass]="getGradeColorClass(result.grade, 'icon-bg')">
+        <i class="bi" [ngClass]="getGradeIcon(result.grade)"></i>
+      </div>
+      <div>
+        <h5 class="mb-0 text-muted">Your Grade</h5>
+        <p class="mb-0 display-5 fw-bold" [ngClass]="getGradeColorClass(result.grade, 'text')">
+          {{ result.grade }}<span *ngIf="isNumeric(result.grade)">%</span>
+        </p>
+      </div>
+    </div>
+    
+    <div class="progress mt-4" style="height: 10px;" *ngIf="isNumeric(result.grade)">
+      <div class="progress-bar" 
+           [ngClass]="getGradeColorClass(result.grade, 'progress')"
+           [style.width]="result.grade + '%'" 
+           role="progressbar"></div>
+    </div>
+  </div>
+
+  
+</div>
+
+ <!-- Back to Exams Button -->
+    <div class="d-flex justify-content-center align-items-center mt-5">
+      <button class="btn btn-outline-primary rounded-pill px-4 py-2" 
+              (click)="goBackToExams()">
+        <i class="bi bi-arrow-left me-2"></i>
+        Back to All Exams
+      </button>
+    </div>

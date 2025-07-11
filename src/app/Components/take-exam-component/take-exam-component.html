@@ -1,29 +1,53 @@
 <div class="container mt-4" *ngIf="examData">
-  <h2 class="mb-4">{{ examData.name }}</h2>
+  <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+    <!-- Exam Header -->
+    <div class="card-header bg-gradient-primary py-3">
+      <h2 class="mb-0 text-white">
+        <i class="bi bi-journal-text me-2"></i>{{ examData.name }}
+      </h2>
+    </div>
+    
+    <div class="card-body p-4 p-md-5">
+      <form (ngSubmit)="submitExam()">
+        <!-- Questions -->
+        <div *ngFor="let question of examData.questions" class="mb-4 p-3 bg-light rounded-3">
+          <label class="fw-bold fs-5 text-primary mb-3 d-block">
+            <i class="bi bi-question-circle me-2"></i>{{ question.header }}
+          </label>
 
-<form (ngSubmit)="submitExam()">
-  <div *ngFor="let question of examData.questions" class="mb-4">
-    <label class="fw-bold">{{ question.header }}</label>
+          <div class="ps-3">
+            <div *ngFor="let choice of question.choices" class="form-check my-2 py-1">
+              <input
+                class="form-check-input border-2 border-primary"
+                type="radio"
+                [name]="'q' + question.id"
+                [value]="choice"
+                [(ngModel)]="answers[question.id]"
+                [id]="'q' + question.id + '_' + choice"
+                required
+              />
+              <label 
+                class="form-check-label fs-6 text-muted" 
+                [for]="'q' + question.id + '_' + choice"
+              >
+                {{ choice }}
+              </label>
+            </div>
+          </div>
+        </div>
 
-    <div *ngFor="let choice of question.choices" class="form-check">
-      <input
-        class="form-check-input"
-        type="radio"
-        [name]="'q' + question.id"
-        [value]="choice"
-        [(ngModel)]="answers[question.id]"
-        [id]="'q' + question.id + '_' + choice"
-        required
-      />
-      <label class="form-check-label" [for]="'q' + question.id + '_' + choice">
-        {{ choice }}
-      </label>
+        <!-- Submit Button -->
+        <div class="text-center mt-4">
+          <button 
+            class="btn btn-success btn-lg rounded-pill px-4 py-2 fw-bold shadow-sm" 
+            type="submit" 
+            [disabled]="isSubmitting"
+          >
+            <i class="bi bi-send-check me-2"></i>
+            Submit Exam
+          </button>
+        </div>
+      </form>
     </div>
   </div>
-
-  <button class="btn btn-success" type="submit" [disabled]="isSubmitting">
-    Submit Exam
-  </button>
-</form>
-
 </div>

@@ -37,4 +37,9 @@ export class ExamDetails implements OnInit {
   }else{
  console.warn('No exam ID found in route.');
   }}
+
+  // Component
+get passingPercentage(): number {
+  return this.exam ? (this.exam.min_grade / this.exam.grade) * 100 : 0;
+}
 }

@@ -1,20 +1,37 @@
-<h1 class="text-center text-muted mb-3">All Exams</h1>
-
-<div class="alert alert-light d-flex justify-content-between align-items-center">
-  <div>
-    <button class="btn btn-outline-dark" [routerLink]="['0/edit']">
-      Add Exam
-    </button>
+<div class="container py-4">
+  <!-- Header Section -->
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
+    <h1 class="h3 mb-3 mb-md-0 text-primary">
+      <i class="bi bi-journal-text me-2"></i>Exam Management
+    </h1>
+    
+    <!-- Action Bar -->
+    <div class="card shadow-sm border-0 w-100 w-md-auto">
+      <div class="card-body p-2">
+        <div class="d-flex flex-column flex-md-row align-items-center gap-3">
+          <!-- Add Exam Button -->
+          <button class="btn btn-primary" [routerLink]="['0/edit']">
+            <i class="bi bi-plus-circle me-2"></i>Create New Exam
+          </button>
+          
+          <!-- Search Section -->
+          <div class="input-group" style="min-width: 250px;">
+            <input
+              type="number"
+              class="form-control form-control-sm"
+              placeholder="Search by Exam ID..."
+              aria-label="Exam ID"
+              [(ngModel)]="examId"
+              (keyup.enter)="searchById()"
+            >
+            <button class="btn btn-outline-secondary" type="button" (click)="searchById()">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="d-flex justify-content-between align-items-center gap-2">
-    <input
-      type="number"
-      class="form-control"
-      placeholder="Enter Exam ID"
-      name="examId"
-      [(ngModel)]="examId"
-    />
-    <button class="btn btn-primary" (click)="searchById()">Search</button>
-  </div>
+  <!-- Content will go here -->
 </div>

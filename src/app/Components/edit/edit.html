@@ -1,43 +1,85 @@
-<div class="container mt-4">
-  <form [formGroup]="Questionform" (ngSubmit)="onSubmit()" class="p-4 border rounded bg-light shadow-sm">
-    <h4 class="mb-4 text-center text-primary header">Edit Exam Question</h4>
+<app-nav-bar></app-nav-bar>
 
-    <div class="row">
-    
-      <div class="col-md-6 mb-3">
-        <label>Grade</label>
-        <input type="number" class="form-control" formControlName="grade" />
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-lg">
+        <div class="card-header bg-primary text-white py-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">
+              <i class="bi bi-pencil-square me-2"></i>Edit Exam Question
+            </h4>
+            <span class="badge bg-light text-primary fs-6">ID: {{q.id}}</span>
+          </div>
+        </div>
+        
+        <div class="card-body p-4">
+          <form [formGroup]="Questionform" (ngSubmit)="onSubmit()">
+            <!-- Grade Input -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold">Grade (Points)</label>
+              <input type="number" class="form-control form-control-lg" 
+                     formControlName="grade" min="1" max="100" />
+              <div class="form-text">Points awarded for correct answer</div>
+            </div>
+
+            <!-- Question Text -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold">Question Text</label>
+              <textarea rows="3" class="form-control" formControlName="header"
+                       placeholder="Enter the question text"></textarea>
+            </div>
+
+            <!-- Question Type -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold">Question Type</label>
+              <select class="form-select" formControlName="type">
+                <option value="multiple_choice">Multiple Choice</option>
+                <option value="true_false">True/False</option>
+                <option value="short_answer">Short Answer</option>
+              </select>
+            </div>
+
+            <!-- Correct Answer -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold text-success">
+                <i class="bi bi-check-circle-fill me-2"></i>Correct Answer
+              </label>
+              <input type="text" class="form-control border-start border-success border-3" 
+                     formControlName="correct_Answer" />
+            </div>
+
+            <!-- Wrong Answers -->
+            <div class="row mb-4">
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold text-danger">
+                  <i class="bi bi-x-circle-fill me-2"></i>First Wrong Answer
+                </label>
+                <input type="text" class="form-control border-start border-danger border-3" 
+                       formControlName="fWrong_Answer" />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold text-danger">
+                  <i class="bi bi-x-circle-fill me-2"></i>Second Wrong Answer
+                </label>
+                <input type="text" class="form-control border-start border-danger border-3" 
+                       formControlName="sWrong_Answer" />
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-flex justify-content-between mt-4">
+              <button type="button" class="btn btn-outline-secondary" routerLink="/Get">
+                <i class="bi bi-arrow-left me-2"></i>Cancel
+              </button>
+              <button type="submit" class="btn btn-primary px-4" 
+                      [disabled]="!Questionform.valid">
+                <i class="bi bi-check-circle me-2"></i>Update Question
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-
-    <div class="mb-3">
-      <label>Question Text</label>
-      <textarea rows="2" class="form-control" formControlName="header"></textarea>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <label>Type</label>
-        <input type="text" class="form-control" formControlName="type" />
-      </div>
-    </div>
-
-    <div class="mb-3">
-      <label>Correct Answer</label>
-      <input type="text" class="form-control" formControlName="correct_Answer" />
-    </div>
-
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <label>First Wrong Answer</label>
-        <input type="text" class="form-control" formControlName="fWrong_Answer" />
-      </div>
-      <div class="col-md-6 mb-3">
-        <label>Second Wrong Answer</label>
-        <input type="text" class="form-control" formControlName="sWrong_Answer" />
-      </div>
-    </div>
-
-    <button type="submit" class="btn btn-success w-100">Edit</button>
-  </form>
+  </div>
 </div>

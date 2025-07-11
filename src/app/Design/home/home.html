@@ -1,0 +1,77 @@
+<app-nav-bar></app-nav-bar>
+
+<section class="hero">
+  <div class="hero-container">
+    <div class="hero-text">
+      <h1>
+        Welcome to <span class="brand">QuickQuiz</span>
+      </h1>
+      <p class="subtitle">
+        The modern, secure, and efficient platform for online assessments.
+      </p>
+      <ul class="features">
+        <li><span>🛡️</span> Secure & Reliable Exams</li>
+        <li><span>📈</span> Real-Time Results & Analytics</li>
+        <li><span>🎓</span> Student-Friendly Experience</li>
+      </ul>
+      <div class="cta-group">
+        <a routerLink="/register" class="cta-btn primary">Sign Up</a>
+        <a routerLink="/login" class="cta-btn secondary">Login</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img
+        src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=600&q=80"
+        alt="Online Exam Illustration"
+        style="background: #e3f0ff; padding: 1.5rem; border-radius: 2.5rem; box-shadow: 0 16px 64px rgba(25,118,210,0.18);"
+      />
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about-section">
+  <div class="about-container">
+    <h2>About Us</h2>
+    <p>
+      QuickQuiz is dedicated to providing a seamless and secure online examination experience for students and educators. Our platform is designed with modern technology, ensuring reliability, fairness, and ease of use for all users.
+    </p>
+    <ul>
+      <li>✔️ Trusted by institutions</li>
+      <li>✔️ Advanced analytics and reporting</li>
+      <li>✔️ 24/7 support</li>
+    </ul>
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <div class="contact-container">
+    <h2>Contact Us</h2>
+    <form class="contact-form" (submit)="false">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit" class="cta-btn primary">Send Message</button>
+    </form>
+    <div class="contact-info">
+     <p><strong>Email:</strong> support&#64;QuickQuiz.com</p>
+
+      <p><strong>Phone:</strong> +1 234 567 890</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-brand">QuickQuiz</div>
+    <div class="footer-links">
+      <a href="#">Home</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a routerLink="/login">Login</a>
+    </div>
+    <div class="footer-copy">
+  &copy; {{ currentYear }} QuickQuiz. All rights reserved.
+</div>
+
+  </div>
+</footer>

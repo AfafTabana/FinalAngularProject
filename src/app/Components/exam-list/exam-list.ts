@@ -4,11 +4,12 @@ import { IExam } from '../../Models/iexam';
 import { Subscription } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { NavBar } from "../nav-bar/nav-bar";
 
 
 @Component({
   selector: 'app-exam-list',
-  imports: [RouterLink,CommonModule],
+  imports: [RouterLink, CommonModule, NavBar],
   templateUrl: './exam-list.html',
   styleUrl: './exam-list.css'
 })

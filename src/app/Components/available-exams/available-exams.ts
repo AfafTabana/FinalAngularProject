@@ -2,11 +2,12 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { StudentExamService } from '../../Services/student-exam-service';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { NavBar } from "../nav-bar/nav-bar";
 
 @Component({
   selector: 'app-available-exams',
    standalone: true,
-  imports: [RouterLink , CommonModule],
+  imports: [RouterLink, CommonModule, NavBar],
   templateUrl: './available-exams.html',
   styleUrl: './available-exams.css'
 })

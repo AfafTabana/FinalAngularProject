@@ -1,0 +1,19 @@
+  .card {
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  
+  .questions-container .card {
+    border-left: 3px solid var(--bs-primary);
+  }
+  
+  .invalid-feedback {
+    display: block;
+  }
+  
+  @media (max-width: 768px) {
+    .card-header .btn {
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+  }

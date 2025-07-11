@@ -1,0 +1,31 @@
+  .not-found-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
+  
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, #4e73df, #224abe);
+  }
+  
+  .error-illustration {
+    opacity: 0.8;
+    margin: 0 auto;
+    max-width: 200px;
+  }
+  
+  @media (max-width: 576px) {
+    .card {
+      width: 100%;
+    }
+    .d-flex {
+      flex-direction: column;
+      gap: 10px !important;
+    }
+    .btn {
+      width: 100%;
+    }
+  }

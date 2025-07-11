@@ -5,10 +5,11 @@ import { Login } from "./AuthComponent/login/login";
 import { NavBar } from './Components/nav-bar/nav-bar';
 import { AddQuestion } from './Components/add-question/add-question';
 import { FormsModule } from '@angular/forms';
+import { Home } from './Design/home/home';
 
 @Component({
   selector: 'app-root',
-  imports: [  RouterOutlet , NavBar , AddQuestion , FormsModule],
+  imports: [  RouterOutlet , NavBar , AddQuestion , FormsModule , Home],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

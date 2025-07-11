@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IQuestion } from '../../Models/IQuestion';
 import { QuestionService } from '../../Services/question-service';
+import { NavBar } from "../nav-bar/nav-bar";
 
 @Component({
   selector: 'app-add-question',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NavBar],
   templateUrl: './add-question.html',
   styleUrl: './add-question.css'
 })

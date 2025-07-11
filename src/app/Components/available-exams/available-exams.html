@@ -1,33 +1,44 @@
+<app-nav-bar></app-nav-bar>
 <div class="container mt-4">
-  <h2 class="mb-3">Available Exams</h2>
-
-  <table class="table table-striped table-bordered" *ngIf="exams.length > 0; else noExams">
-    <thead class="thead-dark">
-      <tr>
-        <th>Exam ID</th>
-        <th>Exam Name</th>
-        <th>Exam Category</th>
-        <th>Take</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let exam of exams; trackBy: trackById">
-        <td>{{ exam.id }}</td>
-        <td>{{ exam.name }}</td>
-        <td>{{ exam.category }}</td>
-        <td>
-          <button class="btn btn-primary btn-sm" [routerLink]="['/take-exam', exam.id]">
-            Take Exam
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- Fallback if no exams -->
-  <ng-template #noExams>
-    <div class="alert alert-info mt-3">
-      No available exams found.
+  <div class="card border-0 shadow-lg rounded-4 overflow-hidden mb-4">
+    <div class="card-header bg-gradient-primary py-3">
+      <h2 class="mb-0 text-white"><i class="bi bi-journal-text me-2"></i>Available Exams</h2>
     </div>
-  </ng-template>
+    <div class="card-body p-4">
+
+      <div *ngIf="exams.length > 0; else noExams" class="row g-4">
+        <div *ngFor="let exam of exams; trackBy: trackById" class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm rounded-3">
+            <div class="card-header bg-light-primary border-0 py-3">
+              <h5 class="mb-0 text-primary">{{ exam.name }}</h5>
+            </div>
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-2">
+                <span class="text-muted me-2">Exam ID:</span>
+                <span class="fw-semibold">{{ exam.id }}</span>
+              </div>
+              <div class="d-flex align-items-center">
+                <span class="text-muted me-2">Category:</span>
+                <span class="badge bg-info bg-opacity-10 text-info">{{ exam.category }}</span>
+              </div>
+            </div>
+            <div class="card-footer bg-transparent border-0 py-3">
+              <button class="btn btn-primary rounded-pill w-100" [routerLink]="['/take-exam', exam.id]">
+                <i class="bi bi-pencil-square me-1"></i>Take Exam
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #noExams>
+        <div class="text-center p-5">
+          <div class="alert alert-info bg-light-info border-0 text-info d-inline-block">
+            <i class="bi bi-info-circle-fill me-2"></i>No available exams found.
+          </div>
+        </div>
+      </ng-template>
+
+    </div>
+  </div>
 </div>

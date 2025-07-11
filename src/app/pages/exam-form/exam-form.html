@@ -1,155 +1,197 @@
-<div class="container mt-5">
-  <h1 class="text-center text-muted mb-4">
-    {{ examId == 0 ? 'Add Exam' : 'Edit Exam' }}
-  </h1>
-
-  <form [formGroup]="ExamForm" (submit)="addExam()">
-    <div class="mb-3">
-      <label class="form-label">Exam Name</label>
-      <input
-        type="text"
-        class="form-control"
-        formControlName="name"
-        placeholder="Enter Exam Name"
-      />
-      @if(getName.touched){@if(getName.hasError('required')){
-        <div id="emailHelp" class="form-text text-danger">Exam Name is required</div>
-      }@if(getName.hasError('minlength')){
-        <div id="emailHelp" class="form-text text-danger">
-        Exam Name length must be > 3
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-sm border-0 rounded-lg">
+        <div class="card-header bg-primary text-white py-3">
+          <h2 class="h4 mb-0 text-center">
+            <i class="bi bi-journal-text me-2"></i>
+            {{ examId == 0 ? 'Create New Exam' : 'Edit Exam' }}
+          </h2>
+        </div>
+        
+        <div class="card-body p-4">
+          <form [formGroup]="ExamForm" (submit)="addExam()" class="needs-validation" novalidate>
+            
+            <!-- Exam Details Section -->
+            <div class="mb-4">
+              <h5 class="mb-3 text-primary">
+                <i class="bi bi-info-circle me-2"></i>Exam Details
+              </h5>
+              
+              <div class="row g-3">
+                <!-- Exam Name -->
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Exam Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="name"
+                    placeholder="e.g. Midterm Assessment"
+                    [ngClass]="{'is-invalid': getName.touched && getName.invalid}"
+                  />
+                  @if(getName.touched && getName.invalid){
+                    <div class="invalid-feedback">
+                      @if(getName.hasError('required')){
+                        Exam name is required
+                      }
+                      @if(getName.hasError('minlength')){
+                        Must be at least 3 characters
+                      }
+                    </div>
+                  }
+                </div>
+                
+                <!-- Exam Category -->
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Category</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="category"
+                    placeholder="e.g. Mathematics"
+                    [ngClass]="{'is-invalid': getCategory.touched && getCategory.invalid}"
+                  />
+                  @if(getCategory.touched && getCategory.invalid){
+                    <div class="invalid-feedback">
+                      Category is required
+                    </div>
+                  }
+                </div>
+                
+                <!-- Created At -->
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Created At</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    formControlName="createdAt"
+                    [ngClass]="{'is-invalid': getCreatedAt.touched && getCreatedAt.invalid}"
+                  />
+                  @if(getCreatedAt.touched && getCreatedAt.invalid){
+                    <div class="invalid-feedback">
+                      Creation date is required
+                    </div>
+                  }
+                </div>
+                
+                <!-- Grades -->
+                <div class="col-md-3">
+                  <label class="form-label fw-semibold">Minimum Grade</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    formControlName="min_grade"
+                    placeholder="50"
+                    [ngClass]="{'is-invalid': getMinGrade.touched && getMinGrade.invalid}"
+                  />
+                  @if(getMinGrade.touched && getMinGrade.invalid){
+                    <div class="invalid-feedback">
+                      Minimum grade is required
+                    </div>
+                  }
+                </div>
+                
+                <div class="col-md-3">
+                  <label class="form-label fw-semibold">Total Grade</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    formControlName="grade"
+                    placeholder="100"
+                    [ngClass]="{'is-invalid': getGrade.touched && getGrade.invalid}"
+                  />
+                  @if(getGrade.touched && getGrade.invalid){
+                    <div class="invalid-feedback">
+                      Total grade is required
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+            
+            <!-- Questions Section (Only for Add Exam) -->
+            @if (examId == 0) {
+              <div class="mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h5 class="text-primary mb-0">
+                    <i class="bi bi-patch-question me-2"></i>Exam Questions
+                  </h5>
+                  <button type="button" class="btn btn-sm btn-outline-primary" (click)="addQuestion()">
+                    <i class="bi bi-plus-circle me-1"></i>Add Question
+                  </button>
+                </div>
+                
+                <div formArrayName="questions" class="questions-container">
+                  @for (q of questions.controls; track q; let i = $index) {
+                    <div class="card mb-3" [formGroupName]="i">
+                      <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                        <span class="fw-medium">Question {{ i + 1 }}</span>
+                        <button type="button" class="btn btn-sm btn-outline-danger" (click)="removeQuestion(i)">
+                          <i class="bi bi-trash"></i> Remove
+                        </button>
+                      </div>
+                      <div class="card-body">
+                        <div class="row g-3">
+                          <div class="col-md-12">
+                            <label class="form-label">Question Text</label>
+                            <input class="form-control" formControlName="header" placeholder="Enter question text">
+                          </div>
+                          
+                          <div class="col-md-6">
+                            <label class="form-label text-success">
+                              <i class="bi bi-check-circle me-1"></i>Correct Answer
+                            </label>
+                            <input class="form-control" formControlName="correct_Answer">
+                          </div>
+                          
+                          <div class="col-md-6">
+                            <label class="form-label">Question Type</label>
+                            <select class="form-select" formControlName="type">
+                              <option value="MCQ">Multiple Choice</option>
+                              <option value="TrueFalse">True/False</option>
+                            </select>
+                          </div>
+                          
+                          <div class="col-md-6">
+                            <label class="form-label text-danger">
+                              <i class="bi bi-x-circle me-1"></i>Wrong Answer 1
+                            </label>
+                            <input class="form-control" formControlName="fWrong_Answer">
+                          </div>
+                          
+                          <div class="col-md-6">
+                            <label class="form-label text-danger">
+                              <i class="bi bi-x-circle me-1"></i>Wrong Answer 2
+                            </label>
+                            <input class="form-control" formControlName="sWrong_Answer">
+                          </div>
+                          
+                          <div class="col-md-3">
+                            <label class="form-label">Points</label>
+                            <input type="number" class="form-control" formControlName="grade">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  }
+                </div>
+              </div>
+            }
+            
+            <!-- Form Actions -->
+            <div class="d-flex justify-content-between mt-4">
+              <button type="button" class="btn btn-outline-secondary" routerLink="/exams">
+                <i class="bi bi-arrow-left me-1"></i>Cancel
+              </button>
+              <button type="submit" class="btn btn-primary px-4" [disabled]="ExamForm.invalid">
+                <i class="bi bi-save me-1"></i>
+                {{ examId == 0 ? 'Create Exam' : 'Update Exam' }}
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-      }}
     </div>
-
-    <div class="mb-3">
-      <label class="form-label">Exam Category</label>
-      <input
-        type="text"
-        class="form-control"
-        formControlName="category"
-        placeholder="Enter Exam Category"
-      />
-      @if(getCategory.touched){@if(getCategory.hasError('required')){
-        <div id="emailHelp" class="form-text text-danger">Exam Category is required</div>
-      }}
-    </div>
-
-    <!-- Created At -->
-    <div class="mb-3">
-      <label class="form-label">Created At</label>
-      <input
-        type="date"
-        class="form-control"
-        formControlName="createdAt"
-      />
-       @if(getCreatedAt.touched){@if(getCreatedAt.hasError('required')){
-        <div id="emailHelp" class="form-text text-danger">Exam Creation date is required</div>
-      }}
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label">Minimum Grade</label>
-      <input
-        type="number"
-        class="form-control"
-        formControlName="min_grade"
-        placeholder="Enter Minimum Grade"
-      />
-       @if(getMinGrade.touched){@if(getMinGrade.hasError('required')){
-        <div id="emailHelp" class="form-text text-danger">Exam minimum grade is required</div>
-      }}
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label">Grade</label>
-      <input
-        type="number"
-        class="form-control"
-        formControlName="grade"
-        placeholder="Enter Grade"
-      />
-          @if(getGrade.touched){@if(getGrade.hasError('required')){
-        <div id="emailHelp" class="form-text text-danger">Exam grade is required</div>
-      }}
-    </div>
-    <hr />
-<!-- <h5 class="text-muted">Exam Questions</h5>
-<div formArrayName="questions">
-  @for (let q of questions.controls; let i = index) {
-    <div [formGroupName]="i" class="border p-3 rounded mb-3 bg-light">
-      <h6>Question {{ i + 1 }}</h6>
-      <div class="mb-2">
-        <label>Header</label>
-        <input type="text" class="form-control" formControlName="header" placeholder="Question text" />
-      </div>
-      <div class="mb-2">
-        <label>Type</label>
-        <input type="text" class="form-control" formControlName="type" placeholder="e.g., MCQ" />
-      </div>
-      <div class="mb-2">
-        <label>Grade</label>
-        <input type="number" class="form-control" formControlName="grade" placeholder="Grade" />
-      </div>
-      <div class="mb-2">
-        <label>Correct Answer</label>
-        <input type="text" class="form-control" formControlName="correct_Answer" placeholder="Correct answer" />
-      </div>
-      <div class="mb-2">
-        <label>First Wrong Answer</label>
-        <input type="text" class="form-control" formControlName="fWrong_Answer" placeholder="First wrong answer" />
-      </div>
-      <div class="mb-2">
-        <label>Second Wrong Answer</label>
-        <input type="text" class="form-control" formControlName="sWrong_Answer" placeholder="Second wrong answer" />
-      </div>
-      <button type="button" class="btn btn-sm btn-danger" (click)="removeQuestion(i)">Remove Question</button>
-    </div>
-  }
-</div> -->
-<div *ngIf="examId == 0">
-  <h5 class="text-muted">Exam Questions</h5>
-<div formArrayName="questions">
-  <div
-    class="mb-3 border p-3 rounded"
-    *ngFor="let q of questions.controls; let i = index"
-    [formGroupName]="i"
-  >
-    <label class="form-label">Question {{ i + 1 }} Header</label>
-    <input class="form-control" formControlName="header" />
-
-    <label class="form-label">Correct Answer</label>
-    <input class="form-control" formControlName="correct_Answer" />
-
-    <label class="form-label">First Wrong Answer</label>
-    <input class="form-control" formControlName="fWrong_Answer" />
-
-    <label class="form-label">Second Wrong Answer</label>
-    <input class="form-control" formControlName="sWrong_Answer" />
-
-    <label class="form-label">Grade</label>
-    <input class="form-control" type="number" formControlName="grade" />
-
-    <label class="form-label">Type</label>
-    <select class="form-control" formControlName="type">
-      <option value="MCQ">MCQ</option>
-      <option value="TrueFalse">True/False</option>
-    </select>
-
-    <button class="btn btn-danger mt-2" type="button" (click)="removeQuestion(i)">
-      Remove Question
-    </button>
   </div>
 </div>
 
-<button type="button" class="btn btn-outline-primary mb-3" (click)="addQuestion()">
-  Add Question
-</button>
-</div>
-
-    <p class="lead mt-3">{{ ExamForm.value | json }}</p>
-
-    <button type="submit" class="btn btn-dark">
-      {{ examId == 0 ? 'Add New Exam' : 'Edit Exam' }}
-    </button>
-  </form>
-</div>

@@ -1,0 +1,98 @@
+/* Light Theme with Blue Accents */
+.bg-dark-2 {
+  background-color: #ffffff; /* White background */
+  border: 1px solid #dee2e6; /* Light gray border */
+}
+
+.bg-dark-3 {
+  background-color: #f8f9fa; /* Very light gray */
+}
+
+.bg-gradient-warning {
+  background: linear-gradient(135deg, #0d6efd, #0b5ed7); /* Blue gradient */
+  color: white !important; /* White text on blue */
+  border-bottom: none;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e9ecef; /* Light gray border */
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.grade-card {
+  transition: all 0.3s ease;
+  border: 1px solid #dee2e6; /* Light gray border */
+  background-color: white;
+}
+
+.grade-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Blue success state */
+.grade-card.bg-success-bg {
+  background-color: #e7f1ff; /* Very light blue */
+  border-color: #bed1f2;
+}
+
+/* Red danger state */
+.grade-card.bg-danger-bg {
+  background-color: #f8e8e8; /* Very light red */
+  border-color: #f1c5c5;
+}
+
+.progress-container {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #dee2e6;
+}
+
+/* Blue progress bar */
+.progress-bar {
+  background-color: #0d6efd; /* Bootstrap primary blue */
+}
+
+/* Text Colors */
+.text-primary {
+  color: #0d6efd !important; /* Bootstrap primary blue */
+}
+
+.text-muted {
+  color: #6c757d !important; /* Bootstrap muted color */
+}
+
+/* Button Styles */
+.btn-outline-primary {
+  color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: white;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+/* Card Styles */
+.card {
+  border: 1px solid #dee2e6;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Header Styles */
+.card-header {
+  font-weight: 600;
+}

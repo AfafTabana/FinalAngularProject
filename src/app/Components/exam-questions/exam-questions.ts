@@ -4,11 +4,12 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { IQuestion } from '../../Models/IQuestion';
 import { GetQuestionList } from '../get-question-list/get-question-list';
 import { CommonModule } from '@angular/common';
+import { NavBar } from "../nav-bar/nav-bar";
 
 @Component({
   selector: 'app-exam-questions',
   standalone: true,
-  imports: [ReactiveFormsModule, GetQuestionList, CommonModule],
+  imports: [ReactiveFormsModule, GetQuestionList, CommonModule, NavBar],
   templateUrl: './exam-questions.html',
   styleUrl: './exam-questions.css'
 })

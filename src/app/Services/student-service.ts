@@ -20,4 +20,8 @@ export class StudentService {
   getStudentDetails(id: number): Observable<Student> {
     return this.http.get<Student>(`${this.apiUrl}/details/${id}`);
   }
+
+    getStudentsByUsername(username: string | null): Observable<Students[]> {
+    return this.http.get<Students[]>(`${this.apiUrl}/searchBy/${username}`);
+  }
 }

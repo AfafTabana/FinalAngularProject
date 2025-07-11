@@ -1,15 +1,103 @@
-  <div class="bg-dark text-light p-5">
-    <h1 class="text-center text-warning">Exam Details : {{examId}}</h1>
+<div class="bg-light text-light min-vh-100 py-5">
+  <div class="container">
+    <div class="card bg-dark-2 border-0 shadow-lg overflow-hidden">
+      <!-- Header Section -->
+      <div class="card-header bg-gradient-warning py-4">
+        <div class="d-flex justify-content-between align-items-center">
+          <h1 class="h3 mb-0 text-dark">
+            <i class="bi bi-journal-text me-2"></i>
+            Exam Details: {{examId}}
+          </h1>
+          <span class="badge bg-dark text-warning fs-5">ID: {{examId}}</span>
+        </div>
+      </div>
 
-    <p class="lead mt-3">Exam Name : {{exam?.name}}</p>
-    <p class="lead mt-3">Exam Category : {{exam?.category}}</p>
-    <p class="lead mt-3">Exam Creation Date : {{exam?.createdAt}}</p>
-    <p class="lead mt-3">Exam minimum garde : {{exam?.min_grade}}</p>
-    <p class="lead mt-3">Exam grade : {{exam?.grade}}</p>
+      <!-- Main Content -->
+      <div class="card-body p-4 p-md-5" *ngIf="exam">
+        <!-- Exam Information Cards -->
+        <div class="row g-4">
+          <!-- Basic Info Card -->
+          <div class="col-md-6">
+            <div class="info-card bg-dark-3 p-4 rounded-3 h-100 border border-warning border-opacity-25">
+              <h3 class="h5 mb-4 text-warning">
+                <i class="bi bi-info-circle me-2"></i>Exam Information
+              </h3>
+              
+              <div class="detail-item">
+                <span class="text-muted">Exam Name:</span>
+                <span class="text-dark fs-5">{{exam.name}}</span>
+              </div>
+              
+              <div class="detail-item">
+                <span class="text-muted">Category:</span>
+                <span class="badge bg-warning bg-opacity-10 text-warning">{{exam.category}}</span>
+              </div>
+              
+              <div class="detail-item">
+                <span class="text-muted">Creation Date:</span>
+                <span class="text-dark">{{exam.createdAt | date:'mediumDate'}}</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Grades Card -->
+          <div class="col-md-6">
+            <div class="info-card bg-dark-3 p-4 rounded-3 h-100 border border-warning border-opacity-25">
+              <h3 class="h5 mb-4 text-warning">
+                <i class="bi bi-graph-up me-2"></i>Grading Information
+              </h3>
+              
+              <div class="row g-3 mb-4">
+                <div class="col-6">
+                  <div class="grade-card bg-danger bg-opacity-10 p-3 rounded-3 text-center border border-danger border-opacity-25">
+                    <p class="text-muted mb-1">Minimum Grade</p>
+                    <h2 class="text-danger mb-0">{{exam.min_grade}}</h2>
+                  </div>
+                </div>
+                
+                <div class="col-6">
+                  <div class="grade-card bg-success bg-opacity-10 p-3 rounded-3 text-center border border-success border-opacity-25">
+                    <p class="text-muted mb-1">Total Grade</p>
+                    <h2 class="text-success mb-0">{{exam.grade}}</h2>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Progress Bar -->
+              <div class="progress-container">
+                <p class="text-muted mb-2">Passing Threshold</p>
+                <div class="progress bg-dark" style="height: 8px;">
+                  <div class="progress-bar bg-warning" 
+                       [style.width]="passingPercentage + '%'"
+                       role="progressbar">
+                  </div>
+                </div>
+                <p class="text-warning text-end mt-2 small">
+                  {{exam.min_grade}}/{{exam.grade}} ({{ passingPercentage | number:'1.0-0' }}%)
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="d-flex justify-content-between mt-5">
+          <button class="btn btn-outline-warning px-4" [routerLink]="['/exams']">
+            <i class="bi bi-arrow-left me-2"></i>Back to Exams
+          </button>
+          
+        
+        </div>
+      </div>
 
-    <button class="btn btn-info mt-4" [routerLink]="['/exams']" 
-             [routerLinkActive]="'text-danger'"
-            [routerLinkActiveOptions]="{exact:true}">
-      Back To All Exams
-    </button>
+      <!-- Loading/Error State -->
+      <div *ngIf="!exam" class="card-body p-5 text-center">
+        <div class="alert alert-warning bg-warning bg-opacity-10 border-warning">
+          <i class="bi bi-exclamation-triangle me-2"></i>
+          Exam details not found
+        </div>
+      </div>
+    </div>
   </div>
+</div>
+

@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import {Ilogin } from '../../Models/ILogin';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Authsrvices } from '../../Services/authsrvices';
 import { AuthHelperServices } from '../../Services/auth-helper-services';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule,CommonModule , RouterModule],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
@@ -74,5 +74,7 @@ export class Login {
     }
   }
 
-
+navigateToRegister() {
+  this.router.navigate(['/register']);
+}
 }
