@@ -28,7 +28,14 @@ export class ExamResult implements OnInit{
   ) {}
     Name : string | null  = null ;
   ngOnInit(): void {
-    this.examId = +this.route.snapshot.paramMap.get('examId')!;
+     this.route.params.subscribe(params => {
+     const examId = params['examId'];
+  const response = JSON.parse(decodeURIComponent(params['responseData']));
+     this.result = response;
+    
+    console.log(examId, response);
+  });
+    //this.examId = +this.route.snapshot.paramMap.get('examId')!;
          this.Name  = this.authhelper.getUserName();
      
       this.StudentService.getStudentsByUsername(this.Name).subscribe({
@@ -52,7 +59,7 @@ export class ExamResult implements OnInit{
   }
 
   loadResult(studentid : number ): void {
-  
+  /*
     this.examService.getExamResult(studentid, this.examId).subscribe({
       next: (data) => {
         this.result = data;
@@ -65,7 +72,7 @@ export class ExamResult implements OnInit{
         console.error(err);
        
       }
-    });
+    });*/
   }
 
   getGradeColorClass(grade: any, type: string): string {

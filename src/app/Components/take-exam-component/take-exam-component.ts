@@ -45,7 +45,8 @@ submitExam(): void  {
         console.log('Exam submitted successfully', response);
 
         alert('Exam submitted successfully!');
-       this.router.navigate(['/exam-result', this.examId]);
+        const responseString = JSON.stringify(response);
+       this.router.navigate(['/exam-result', this.examId, encodeURIComponent(responseString)]);
       },
       error: (err) => {
         console.error('Error submitting exam:', err);

@@ -77,7 +77,7 @@ export const routes: Routes = [
     path: 'all-student-results',
     component: AllStudentResults
   } , 
-  { path: 'exam-result/:examId', component: ExamResult },
+  { path: 'exam-result/:examId/:responseData', component: ExamResult },
   {path:'AllExams',component:AvailableExams},
   { path: '', component: Home },
    { path: 'home', component: Home },
